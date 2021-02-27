@@ -10,7 +10,6 @@ The application have their necessary configurations in order to run with mongodb
 
 ## Requirements for building and running the applications
 
-- [Composer](https://getcomposer.org/download/)
 - [Docker](https://docs.docker.com/get-docker/)
 
 ## Application Build and Run
