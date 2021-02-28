@@ -14,7 +14,9 @@ The application has its necessary configurations in order to run with mongodb co
 
 ## Application Build and Run
 
-After cloning the repository get into the laravel-sail-mongodb directory and run:
+After cloning the repository get into the laravel-docker-mongodb directory and run:
+
+`docker-compose up -d`
 
 `docker-compose exec php-fpm composer install`
 
