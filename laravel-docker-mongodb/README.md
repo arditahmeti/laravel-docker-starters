@@ -16,11 +16,11 @@ The application has its necessary configurations in order to run with mongodb co
 
 After cloning the repository get into the laravel-docker-mongodb directory and run:
 
+`cp .env.example .env`
+
 `docker-compose up -d`
 
 `docker-compose exec php-fpm composer install`
-
-`docker-compose exec php-fpm cp .env.example .env`
 
 ## Then finally test the application
 
