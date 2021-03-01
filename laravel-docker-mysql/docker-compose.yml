@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+  php-fpm:
+    build:
+      context: ./
+      dockerfile: _docker/php-fpm/Dockerfile
+    container_name: php-fpm
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - local
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    networks:
+      - local
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./_docker/nginx:/etc/nginx/conf.d
+    networks:
+      - local
+    ports:
+      - 8000:80
+networks:
+  local:
+    driver: bridge
