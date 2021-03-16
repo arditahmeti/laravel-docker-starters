@@ -10,6 +10,8 @@ unzip
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN docker-php-ext-install pdo_mysql
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN usermod -u 1000 -d /home/www-data www-data
