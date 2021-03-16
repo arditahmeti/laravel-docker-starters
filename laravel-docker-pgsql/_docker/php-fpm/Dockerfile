@@ -4,11 +4,15 @@ WORKDIR /var/www
 
 RUN apt-get update && apt-get install -y \
 autoconf build-essential \
+libpq-dev \
 git \
 zip \
 unzip
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+RUN docker-php-ext-install pdo_pgsql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
